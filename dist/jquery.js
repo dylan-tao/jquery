@@ -1,12 +1,12 @@
 /*!
- * jQuery JavaScript Library v4.0.0+808dce8 -ajax/script,-ajax/jsonp,-ajax/load,-ajax/binary,-deprecated,-effects,-event/trigger,-wrap,-deprecated/ajax-event-alias,-deprecated/event,-effects/Tween,-effects/animatedSelector
+ * jQuery JavaScript Library v4.0.0+2be3199d.dirty -ajax/script,-ajax/jsonp,-ajax/load,-ajax/binary,-deprecated,-effects,-event/trigger,-wrap,-deprecated/ajax-event-alias,-deprecated/event,-effects/Tween,-effects/animatedSelector
  * https://jquery.com/
  *
  * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.com/license/
  *
- * Date: 2026-02-11T07:39Z
+ * Date: 2026-02-12T03:41Z
  */
 ( function( global, factory ) {
 
@@ -89,7 +89,7 @@ function isArrayLike( obj ) {
 		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
 }
 
-var document$1 = window.document;
+var document$2 = window.document;
 
 var preservedScriptAttributes = {
 	type: true,
@@ -99,7 +99,7 @@ var preservedScriptAttributes = {
 };
 
 function DOMEval( code, node, doc ) {
-	doc = doc || document$1;
+	doc = doc || document$2;
 
 	var i,
 		script = doc.createElement( "script" );
@@ -116,7 +116,7 @@ function DOMEval( code, node, doc ) {
 	}
 }
 
-var version = "4.0.0+808dce8 -ajax/script,-ajax/jsonp,-ajax/load,-ajax/binary,-deprecated,-effects,-event/trigger,-wrap,-deprecated/ajax-event-alias,-deprecated/event,-effects/Tween,-effects/animatedSelector",
+var version = "4.0.0+2be3199d.dirty -ajax/script,-ajax/jsonp,-ajax/load,-ajax/binary,-deprecated,-effects,-event/trigger,-wrap,-deprecated/ajax-event-alias,-deprecated/event,-effects/Tween,-effects/animatedSelector",
 
 	rhtmlSuffix = /HTML$/i,
 
@@ -528,7 +528,7 @@ var pop = arr.pop;
 // https://www.w3.org/TR/css3-selectors/#whitespace
 var whitespace = "[\\x20\\t\\r\\n\\f]";
 
-var isIE = document$1.documentMode;
+var isIE = document$2.documentMode;
 
 var rbuggyQSA = isIE && new RegExp(
 
@@ -561,7 +561,7 @@ var rdescend = new RegExp( whitespace + "|>" );
 
 var rsibling = /[+~]/;
 
-var documentElement$1 = document$1.documentElement;
+var documentElement$1 = document$2.documentElement;
 
 // Support: IE 9 - 11+
 // IE requires a prefix.
@@ -1066,8 +1066,8 @@ function sortOrder( a, b ) {
 		// IE sometimes throws a "Permission denied" error when strict-comparing
 		// two documents; shallow comparisons work.
 		// eslint-disable-next-line eqeqeq
-		if ( a == document$1 || a.ownerDocument == document$1 &&
-			jQuery.contains( document$1, a ) ) {
+		if ( a == document$2 || a.ownerDocument == document$2 &&
+			jQuery.contains( document$2, a ) ) {
 			return -1;
 		}
 
@@ -1075,8 +1075,8 @@ function sortOrder( a, b ) {
 		// IE sometimes throws a "Permission denied" error when strict-comparing
 		// two documents; shallow comparisons work.
 		// eslint-disable-next-line eqeqeq
-		if ( b == document$1 || b.ownerDocument == document$1 &&
-			jQuery.contains( document$1, b ) ) {
+		if ( b == document$2 || b.ownerDocument == document$2 &&
+			jQuery.contains( document$2, b ) ) {
 			return 1;
 		}
 
@@ -1123,7 +1123,7 @@ var i,
 	outermostContext,
 
 	// Local document vars
-	document,
+	document$1,
 	documentElement,
 	documentIsHTML,
 
@@ -1190,7 +1190,7 @@ function find( selector, context, results, seed ) {
 	// Try to shortcut find operations (as opposed to filters) in HTML documents
 	if ( !seed ) {
 		setDocument( context );
-		context = context || document;
+		context = context || document$1;
 
 		if ( documentIsHTML ) {
 
@@ -1411,21 +1411,21 @@ function createPositionalPseudo( fn ) {
  */
 function setDocument( node ) {
 	var subWindow,
-		doc = node ? node.ownerDocument || node : document$1;
+		doc = node ? node.ownerDocument || node : document$2;
 
 	// Return early if doc is invalid or already selected
 	// Support: IE 11+
 	// IE sometimes throws a "Permission denied" error when strict-comparing
 	// two documents; shallow comparisons work.
 	// eslint-disable-next-line eqeqeq
-	if ( doc == document || doc.nodeType !== 9 ) {
+	if ( doc == document$1 || doc.nodeType !== 9 ) {
 		return;
 	}
 
 	// Update global variables
-	document = doc;
-	documentElement = document.documentElement;
-	documentIsHTML = !jQuery.isXMLDoc( document );
+	document$1 = doc;
+	documentElement = document$1.documentElement;
+	documentIsHTML = !jQuery.isXMLDoc( document$1 );
 
 	// Support: IE 9 - 11+
 	// Accessing iframe documents after unload throws "permission denied" errors (see trac-13936)
@@ -1433,8 +1433,8 @@ function setDocument( node ) {
 	// IE sometimes throws a "Permission denied" error when strict-comparing
 	// two documents; shallow comparisons work.
 	// eslint-disable-next-line eqeqeq
-	if ( isIE && document$1 != document &&
-		( subWindow = document.defaultView ) && subWindow.top !== subWindow ) {
+	if ( isIE && document$2 != document$1 &&
+		( subWindow = document$1.defaultView ) && subWindow.top !== subWindow ) {
 		subWindow.addEventListener( "unload", unloadHandler );
 	}
 }
@@ -1457,7 +1457,7 @@ find.matchesSelector = function( elem, expr ) {
 		}
 	}
 
-	return find( expr, document, null, [ elem ] ).length > 0;
+	return find( expr, document$1, null, [ elem ] ).length > 0;
 };
 
 jQuery.expr = {
@@ -1802,8 +1802,8 @@ jQuery.expr = {
 		},
 
 		focus: function( elem ) {
-			return elem === document.activeElement &&
-				document.hasFocus() &&
+			return elem === document$1.activeElement &&
+				document$1.hasFocus() &&
 				!!( elem.type || elem.href || ~elem.tabIndex );
 		},
 
@@ -2237,7 +2237,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				// IE sometimes throws a "Permission denied" error when strict-comparing
 				// two documents; shallow comparisons work.
 				// eslint-disable-next-line eqeqeq
-				outermostContext = context == document || context || outermost;
+				outermostContext = context == document$1 || context || outermost;
 			}
 
 			// Add elements passing elementMatchers directly to results
@@ -2249,12 +2249,12 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					// IE sometimes throws a "Permission denied" error when strict-comparing
 					// two documents; shallow comparisons work.
 					// eslint-disable-next-line eqeqeq
-					if ( !context && elem.ownerDocument != document ) {
+					if ( !context && elem.ownerDocument != document$1 ) {
 						setDocument( elem );
 						xml = !documentIsHTML;
 					}
 					while ( ( matcher = elementMatchers[ j++ ] ) ) {
-						if ( matcher( elem, context || document, xml ) ) {
+						if ( matcher( elem, context || document$1, xml ) ) {
 							push.call( results, elem );
 							break;
 						}
@@ -2654,7 +2654,7 @@ var rootjQuery,
 					// Intentionally let the error be thrown if parseHTML is not present
 					jQuery.merge( this, jQuery.parseHTML(
 						match[ 1 ],
-						context && context.nodeType ? context.ownerDocument || context : document$1,
+						context && context.nodeType ? context.ownerDocument || context : document$2,
 						true
 					) );
 
@@ -2677,7 +2677,7 @@ var rootjQuery,
 
 				// HANDLE: $(#id)
 				} else {
-					elem = document$1.getElementById( match[ 2 ] );
+					elem = document$2.getElementById( match[ 2 ] );
 
 					if ( elem ) {
 
@@ -2705,7 +2705,7 @@ var rootjQuery,
 init.prototype = jQuery.fn;
 
 // Initialize central reference
-rootjQuery = jQuery( document$1 );
+rootjQuery = jQuery( document$2 );
 
 var rparentsprev = /^(?:parents|prev(?:Until|All))/,
 
@@ -3566,7 +3566,7 @@ jQuery.extend( {
 		}
 
 		// If there are functions bound, to execute
-		readyList.resolveWith( document$1, [ jQuery ] );
+		readyList.resolveWith( document$2, [ jQuery ] );
 	}
 } );
 
@@ -3574,14 +3574,14 @@ jQuery.ready.then = readyList.then;
 
 // The ready event handler and self cleanup method
 function completed() {
-	document$1.removeEventListener( "DOMContentLoaded", completed );
+	document$2.removeEventListener( "DOMContentLoaded", completed );
 	window.removeEventListener( "load", completed );
 	jQuery.ready();
 }
 
 // Catch cases where $(document).ready() is called
 // after the browser event has already occurred.
-if ( document$1.readyState !== "loading" ) {
+if ( document$2.readyState !== "loading" ) {
 
 	// Handle it asynchronously to allow scripts the opportunity to delay ready
 	window.setTimeout( jQuery.ready );
@@ -3589,7 +3589,7 @@ if ( document$1.readyState !== "loading" ) {
 } else {
 
 	// Use the handy event callback
-	document$1.addEventListener( "DOMContentLoaded", completed );
+	document$2.addEventListener( "DOMContentLoaded", completed );
 
 	// A fallback to window.onload, that will always work
 	window.addEventListener( "load", completed );
@@ -6176,7 +6176,7 @@ var
 	allTypes = "*/".concat( "*" ),
 
 	// Anchor tag for parsing the document origin
-	originAnchor = document$1.createElement( "a" );
+	originAnchor = document$2.createElement( "a" );
 
 originAnchor.href = location.href;
 
@@ -6673,7 +6673,7 @@ jQuery.extend( {
 
 		// A cross-domain request is in order when the origin doesn't match the current origin.
 		if ( s.crossDomain == null ) {
-			urlAnchor = document$1.createElement( "a" );
+			urlAnchor = document$2.createElement( "a" );
 
 			// Support: IE <=8 - 11+
 			// IE throws exception on accessing the href property if url is malformed,
@@ -7236,7 +7236,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 }
 
 var cssPrefixes = [ "Webkit", "Moz", "ms" ],
-	emptyStyle = document$1.createElement( "div" ).style;
+	emptyStyle = document$2.createElement( "div" ).style;
 
 // Return a vendor-prefixed property or undefined
 function vendorPropName( name ) {
@@ -7262,7 +7262,7 @@ function finalPropName( name ) {
 }
 
 var reliableTrDimensionsVal, reliableColDimensionsVal,
-	table = document$1.createElement( "table" );
+	table = document$2.createElement( "table" );
 
 // Executing table tests requires only one layout, so they're executed
 // at the same time to save the second computation.
@@ -7279,9 +7279,9 @@ function computeTableStyleTests() {
 	}
 
 	var trStyle,
-		col = document$1.createElement( "col" ),
-		tr = document$1.createElement( "tr" ),
-		td = document$1.createElement( "td" );
+		col = document$2.createElement( "col" ),
+		tr = document$2.createElement( "tr" ),
+		td = document$2.createElement( "td" );
 
 	table.style.cssText = "position:absolute;left:-11111px;" +
 		"border-collapse:separate;border-spacing:0";
@@ -7854,117 +7854,6 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.ajaxSettings.xhr = function() {
-	return new window.XMLHttpRequest();
-};
-
-var xhrSuccessStatus = {
-
-	// File protocol always yields status code 0, assume 200
-	0: 200
-};
-
-jQuery.ajaxTransport( function( options ) {
-	var callback;
-
-	return {
-		send: function( headers, complete ) {
-			var i,
-				xhr = options.xhr();
-
-			xhr.open(
-				options.type,
-				options.url,
-				options.async,
-				options.username,
-				options.password
-			);
-
-			// Apply custom fields if provided
-			if ( options.xhrFields ) {
-				for ( i in options.xhrFields ) {
-					xhr[ i ] = options.xhrFields[ i ];
-				}
-			}
-
-			// Override mime type if needed
-			if ( options.mimeType && xhr.overrideMimeType ) {
-				xhr.overrideMimeType( options.mimeType );
-			}
-
-			// X-Requested-With header
-			// For cross-domain requests, seeing as conditions for a preflight are
-			// akin to a jigsaw puzzle, we simply never set it to be sure.
-			// (it can always be set on a per-request basis or even using ajaxSetup)
-			// For same-domain requests, won't change header if already provided.
-			if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
-				headers[ "X-Requested-With" ] = "XMLHttpRequest";
-			}
-
-			// Set headers
-			for ( i in headers ) {
-				xhr.setRequestHeader( i, headers[ i ] );
-			}
-
-			// Callback
-			callback = function( type ) {
-				return function() {
-					if ( callback ) {
-						callback = xhr.onload = xhr.onerror = xhr.onabort = xhr.ontimeout = null;
-
-						if ( type === "abort" ) {
-							xhr.abort();
-						} else if ( type === "error" ) {
-							complete(
-
-								// File: protocol always yields status 0; see trac-8605, trac-14207
-								xhr.status,
-								xhr.statusText
-							);
-						} else {
-							complete(
-								xhrSuccessStatus[ xhr.status ] || xhr.status,
-								xhr.statusText,
-
-								// For XHR2 non-text, let the caller handle it (gh-2498)
-								( xhr.responseType || "text" ) === "text" ?
-									{ text: xhr.responseText } :
-									{ binary: xhr.response },
-								xhr.getAllResponseHeaders()
-							);
-						}
-					}
-				};
-			};
-
-			// Listen to events
-			xhr.onload = callback();
-			xhr.onabort = xhr.onerror = xhr.ontimeout = callback( "error" );
-
-			// Create the abort callback
-			callback = callback( "abort" );
-
-			try {
-
-				// Do send the request (this may raise an exception)
-				xhr.send( options.hasContent && options.data || null );
-			} catch ( e ) {
-
-				// trac-14683: Only rethrow if this hasn't been notified as an error yet
-				if ( callback ) {
-					throw e;
-				}
-			}
-		},
-
-		abort: function() {
-			if ( callback ) {
-				callback();
-			}
-		}
-	};
-} );
-
 // beeico ajax namespace
 jQuery.beeico = {
 	url: {},
@@ -8125,6 +8014,440 @@ jQuery.beeico.json.putText = function( url, data, options ) {
 	opts.data = JSON.stringify( data );
 	opts.contentType = "application/json";
 	return jQuery.ajax( opts );
+};
+
+jQuery.ajaxSettings.xhr = function() {
+	return new window.XMLHttpRequest();
+};
+
+var xhrSuccessStatus = {
+
+	// File protocol always yields status code 0, assume 200
+	0: 200
+};
+
+jQuery.ajaxTransport( function( options ) {
+	var callback;
+
+	return {
+		send: function( headers, complete ) {
+			var i,
+				xhr = options.xhr();
+
+			xhr.open(
+				options.type,
+				options.url,
+				options.async,
+				options.username,
+				options.password
+			);
+
+			// Apply custom fields if provided
+			if ( options.xhrFields ) {
+				for ( i in options.xhrFields ) {
+					xhr[ i ] = options.xhrFields[ i ];
+				}
+			}
+
+			// Override mime type if needed
+			if ( options.mimeType && xhr.overrideMimeType ) {
+				xhr.overrideMimeType( options.mimeType );
+			}
+
+			// X-Requested-With header
+			// For cross-domain requests, seeing as conditions for a preflight are
+			// akin to a jigsaw puzzle, we simply never set it to be sure.
+			// (it can always be set on a per-request basis or even using ajaxSetup)
+			// For same-domain requests, won't change header if already provided.
+			if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
+				headers[ "X-Requested-With" ] = "XMLHttpRequest";
+			}
+
+			// Set headers
+			for ( i in headers ) {
+				xhr.setRequestHeader( i, headers[ i ] );
+			}
+
+			// Callback
+			callback = function( type ) {
+				return function() {
+					if ( callback ) {
+						callback = xhr.onload = xhr.onerror = xhr.onabort = xhr.ontimeout = null;
+
+						if ( type === "abort" ) {
+							xhr.abort();
+						} else if ( type === "error" ) {
+							complete(
+
+								// File: protocol always yields status 0; see trac-8605, trac-14207
+								xhr.status,
+								xhr.statusText
+							);
+						} else {
+							complete(
+								xhrSuccessStatus[ xhr.status ] || xhr.status,
+								xhr.statusText,
+
+								// For XHR2 non-text, let the caller handle it (gh-2498)
+								( xhr.responseType || "text" ) === "text" ?
+									{ text: xhr.responseText } :
+									{ binary: xhr.response },
+								xhr.getAllResponseHeaders()
+							);
+						}
+					}
+				};
+			};
+
+			// Listen to events
+			xhr.onload = callback();
+			xhr.onabort = xhr.onerror = xhr.ontimeout = callback( "error" );
+
+			// Create the abort callback
+			callback = callback( "abort" );
+
+			try {
+
+				// Do send the request (this may raise an exception)
+				xhr.send( options.hasContent && options.data || null );
+			} catch ( e ) {
+
+				// trac-14683: Only rethrow if this hasn't been notified as an error yet
+				if ( callback ) {
+					throw e;
+				}
+			}
+		},
+
+		abort: function() {
+			if ( callback ) {
+				callback();
+			}
+		}
+	};
+} );
+
+const LS_PREFIX = 'beeico_store_';
+
+function getKey$1(key) {
+	return LS_PREFIX + key;
+}
+
+// Helper to check localStorage support
+function isLocalStorageSupported() {
+	try {
+		var testKey = '__ls_test__';
+		localStorage.setItem(testKey, 'test');
+		localStorage.removeItem(testKey);
+		return true;
+	} catch (e) {
+		return false;
+	}
+}
+
+// localStorage API
+jQuery.beeico.store.local = {
+	supported: isLocalStorageSupported(),
+
+	set: function(key, value) {
+		if (!this.supported) {
+			console.error('localStorage is not supported');
+			return this;
+		}
+		try {
+			var data = JSON.stringify({
+				value: value,
+				timestamp: Date.now()
+			});
+			localStorage.setItem(getKey$1(key), data);
+			return this;
+		} catch (e) {
+			console.error('localStorage set failed:', e);
+			return this;
+		}
+	},
+
+	get: function(key) {
+		if (!this.supported) {
+			return null;
+		}
+		try {
+			var data = localStorage.getItem(getKey$1(key));
+			return data ? JSON.parse(data).value : null;
+		} catch (e) {
+			console.error('localStorage get failed:', e);
+			return null;
+		}
+	},
+
+	remove: function(key) {
+		if (!this.supported) {
+			return this;
+		}
+		try {
+			localStorage.removeItem(getKey$1(key));
+			return this;
+		} catch (e) {
+			console.error('localStorage remove failed:', e);
+			return this;
+		}
+	},
+
+	clear: function() {
+		if (!this.supported) {
+			return this;
+		}
+		try {
+			// Only remove prefixed keys
+			var prefix = LS_PREFIX;
+			for (var i = localStorage.length - 1; i >= 0; i--) {
+				var key = localStorage.key(i);
+				if (key.indexOf(prefix) === 0) {
+					localStorage.removeItem(key);
+				}
+			}
+			return this;
+		} catch (e) {
+			console.error('localStorage clear failed:', e);
+			return this;
+		}
+	},
+
+	keys: function() {
+		if (!this.supported) {
+			return [];
+		}
+		var keys = [];
+		var prefix = LS_PREFIX;
+		for (var i = 0; i < localStorage.length; i++) {
+			var key = localStorage.key(i);
+			if (key.indexOf(prefix) === 0) {
+				keys.push(key.substring(prefix.length));
+			}
+		}
+		return keys;
+	}
+};
+
+const SS_PREFIX = 'beeico_session_';
+
+function getKey(key) {
+	return SS_PREFIX + key;
+}
+
+// Helper to check sessionStorage support
+function isSessionStorageSupported() {
+	try {
+		var testKey = '__ss_test__';
+		sessionStorage.setItem(testKey, 'test');
+		sessionStorage.removeItem(testKey);
+		return true;
+	} catch (e) {
+		return false;
+	}
+}
+
+// sessionStorage API
+jQuery.beeico.store.session = {
+	supported: isSessionStorageSupported(),
+
+	set: function(key, value) {
+		if (!this.supported) {
+			console.error('sessionStorage is not supported');
+			return this;
+		}
+		try {
+			var data = JSON.stringify({
+				value: value,
+				timestamp: Date.now()
+			});
+			sessionStorage.setItem(getKey(key), data);
+			return this;
+		} catch (e) {
+			console.error('sessionStorage set failed:', e);
+			return this;
+		}
+	},
+
+	get: function(key) {
+		if (!this.supported) {
+			return null;
+		}
+		try {
+			var data = sessionStorage.getItem(getKey(key));
+			return data ? JSON.parse(data).value : null;
+		} catch (e) {
+			console.error('sessionStorage get failed:', e);
+			return null;
+		}
+	},
+
+	remove: function(key) {
+		if (!this.supported) {
+			return this;
+		}
+		try {
+			sessionStorage.removeItem(getKey(key));
+			return this;
+		} catch (e) {
+			console.error('sessionStorage remove failed:', e);
+			return this;
+		}
+	},
+
+	clear: function() {
+		if (!this.supported) {
+			return this;
+		}
+		try {
+			// Only remove prefixed keys
+			var prefix = SS_PREFIX;
+			for (var i = sessionStorage.length - 1; i >= 0; i--) {
+				var key = sessionStorage.key(i);
+				if (key.indexOf(prefix) === 0) {
+					sessionStorage.removeItem(key);
+				}
+			}
+			return this;
+		} catch (e) {
+			console.error('sessionStorage clear failed:', e);
+			return this;
+		}
+	},
+
+	keys: function() {
+		if (!this.supported) {
+			return [];
+		}
+		var keys = [];
+		var prefix = SS_PREFIX;
+		for (var i = 0; i < sessionStorage.length; i++) {
+			var key = sessionStorage.key(i);
+			if (key.indexOf(prefix) === 0) {
+				keys.push(key.substring(prefix.length));
+			}
+		}
+		return keys;
+	}
+};
+
+// Helper to encode cookie value
+function encodeCookieValue(value) {
+	return encodeURIComponent(String(value));
+}
+
+// Helper to decode cookie value
+function decodeCookieValue(value) {
+	try {
+		return decodeURIComponent(value);
+	} catch (e) {
+		return value;
+	}
+}
+
+// Helper to parse cookie string
+function parseCookieString(cookieString) {
+	var cookies = {};
+	if (!cookieString) {
+		return cookies;
+	}
+	var pairs = cookieString.split(';');
+	for (var i = 0; i < pairs.length; i++) {
+		var pair = pairs[i].trim();
+		var index = pair.indexOf('=');
+		if (index > 0) {
+			var key = decodeCookieValue(pair.substring(0, index));
+			var value = decodeCookieValue(pair.substring(index + 1));
+			cookies[key] = value;
+		}
+	}
+	return cookies;
+}
+
+// Helper to build cookie string
+function buildCookieString(name, value, options) {
+	options = options || {};
+	var expires = '';
+	var path = '';
+	var domain = '';
+	var secure = '';
+	var sameSite = '';
+
+	if (options.expires) {
+		expires = '; expires=' + options.expires.toUTCString();
+	}
+	if (options.path) {
+		path = '; path=' + options.path;
+	} else {
+		path = '; path=/';
+	}
+	if (options.domain) {
+		domain = '; domain=' + options.domain;
+	}
+	if (options.secure) {
+		secure = '; secure';
+	}
+	if (options.sameSite) {
+		sameSite = '; SameSite=' + options.sameSite;
+	}
+
+	return name + '=' + encodeCookieValue(value) + expires + path + domain + secure + sameSite;
+}
+
+// Helper to get cookie expiration date
+function getExpirationDays(days) {
+	var date = new Date();
+	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	return date;
+}
+
+// Cookie API
+jQuery.beeico.store.cookies = {
+	set: function(key, value, options) {
+		try {
+			document.cookie = buildCookieString(key, value, options);
+			return this;
+		} catch (e) {
+			console.error('Cookie set failed:', e);
+			return this;
+		}
+	},
+
+	get: function(key) {
+		var cookies = parseCookieString(document.cookie);
+		return cookies[key] || null;
+	},
+
+	remove: function(key) {
+		// Set cookie in the past to expire
+		this.set(key, '', { expires: new Date(0) });
+		return this;
+	},
+
+	getAll: function() {
+		return parseCookieString(document.cookie);
+	},
+
+	// Convenience methods
+	setWithExpiration: function(key, value, days, options) {
+		options = options || {};
+		options.expires = getExpirationDays(days);
+		return this.set(key, value, options);
+	},
+
+	// Session cookie (expires when browser closes)
+	setSession: function(key, value, options) {
+		options = options || {};
+		return this.set(key, value, options);
+	}
+};
+
+// beeico.store namespace
+jQuery.beeico = jQuery.beeico || {};
+jQuery.beeico.store = {
+	local: {},
+	session: {},
+	cookies: {}
 };
 
 // Argument "data" should be string of html or a TrustedHTML wrapper of obvious HTML
