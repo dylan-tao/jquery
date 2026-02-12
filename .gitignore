@@ -6,6 +6,7 @@
 .DS_Store
 .bower.json
 .sizecache.json
+.idea
 yarn.lock
 .eslintcache
 tmp
@@ -15,6 +16,8 @@ npm-debug.log*
 # Ignore built files in `dist` folder
 # Leave the package.json and wrappers
 /dist/*
+!/dist/jquery.js
+!/dist/jquery.min.js
 !/dist/package.json
 !/dist/wrappers
 
