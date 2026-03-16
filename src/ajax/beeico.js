@@ -30,10 +30,21 @@ function processFormData( data ) {
 }
 
 // Helper function to get AJAX options
+// Optimization: avoid deep extend for simple cases
 function getAjaxOptions( url, data, options ) {
-	var opts = jQuery.extend( true, {}, options || {} );
+	var opts = options ? jQuery.extend( {}, options ) : {};
 	opts.url = url;
 	opts.data = data;
+	return opts;
+}
+
+// Helper to apply FormData settings if needed
+function applyFormDataOptions( opts, data ) {
+	// Auto-detect FormData for multipart/form-data
+	if ( data instanceof FormData ) {
+		opts.processData = false;
+		opts.contentType = false;
+	}
 	return opts;
 }
 
@@ -73,53 +84,33 @@ jQuery.beeico.url.deleteText = function( url, data, options ) {
 // Form body methods (POST/PUT) - auto-detect multipart/form-data
 // beeico.form.postJson - send form data via POST, expect JSON response
 jQuery.beeico.form.postJson = function( url, data, options ) {
-	var opts = getAjaxOptions( url, processFormData( data ), options );
+	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
 	opts.type = "POST";
 	opts.dataType = "json";
-	// Auto-detect FormData for multipart/form-data
-	if ( data instanceof FormData ) {
-		opts.processData = false;
-		opts.contentType = false;
-	}
 	return jQuery.ajax( opts );
 };
 
 // beeico.form.postText - send form data via POST, expect text/html response
 jQuery.beeico.form.postText = function( url, data, options ) {
-	var opts = getAjaxOptions( url, processFormData( data ), options );
+	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
 	opts.type = "POST";
 	opts.dataType = "text";
-	// Auto-detect FormData for multipart/form-data
-	if ( data instanceof FormData ) {
-		opts.processData = false;
-		opts.contentType = false;
-	}
 	return jQuery.ajax( opts );
 };
 
 // beeico.form.putJson - send form data via PUT, expect JSON response
 jQuery.beeico.form.putJson = function( url, data, options ) {
-	var opts = getAjaxOptions( url, processFormData( data ), options );
+	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
 	opts.type = "PUT";
 	opts.dataType = "json";
-	// Auto-detect FormData for multipart/form-data
-	if ( data instanceof FormData ) {
-		opts.processData = false;
-		opts.contentType = false;
-	}
 	return jQuery.ajax( opts );
 };
 
 // beeico.form.putText - send form data via PUT, expect text/html response
 jQuery.beeico.form.putText = function( url, data, options ) {
-	var opts = getAjaxOptions( url, processFormData( data ), options );
+	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
 	opts.type = "PUT";
 	opts.dataType = "text";
-	// Auto-detect FormData for multipart/form-data
-	if ( data instanceof FormData ) {
-		opts.processData = false;
-		opts.contentType = false;
-	}
 	return jQuery.ajax( opts );
 };
 

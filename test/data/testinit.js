@@ -410,6 +410,8 @@ this.loadTests = function() {
 				"unit/css.js",
 				"unit/serialize.js",
 				"unit/ajax.js",
+				"unit/beeico-ajax.js",
+				"unit/beeico-storage.js",
 				"unit/effects.js",
 				"unit/offset.js",
 				"unit/dimensions.js",
