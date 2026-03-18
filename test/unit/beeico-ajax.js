@@ -56,7 +56,7 @@ QUnit.module( "beeico-ajax", {
 	ajaxTest( "jQuery.beeico.url.getJson() - basic request", 2, function( assert ) {
 		return {
 			url: baseURL + "mock.php?action=json",
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.url.getJson( baseURL + "mock.php?action=json", { header: "json" } );
 			},
 			success: function( json ) {
@@ -68,7 +68,7 @@ QUnit.module( "beeico-ajax", {
 
 	ajaxTest( "jQuery.beeico.url.getText() - text response", 2, function( assert ) {
 		return {
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.url.getText( baseURL + "text.txt" );
 			},
 			success: function( text ) {
@@ -80,7 +80,7 @@ QUnit.module( "beeico-ajax", {
 
 	ajaxTest( "jQuery.beeico.json.postJson() - JSON body", 3, function( assert ) {
 		return {
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.json.postJson(
 					baseURL + "mock.php?action=json",
 					{ name: "test", value: 123 }
@@ -100,7 +100,7 @@ QUnit.module( "beeico-ajax", {
 
 	ajaxTest( "jQuery.beeico.form.postJson() - form data", 2, function( assert ) {
 		return {
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.form.postJson(
 					baseURL + "mock.php?action=name",
 					{ name: "peter" }
@@ -118,7 +118,7 @@ QUnit.module( "beeico-ajax", {
 		formData.append( "name", "peter" );
 
 		return {
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.form.postJson( baseURL + "mock.php?action=name", formData );
 			},
 			success: function( data ) {
@@ -133,7 +133,7 @@ QUnit.module( "beeico-ajax", {
 
 	ajaxTest( "jQuery.beeico.json.putJson() - PUT request", 2, function( assert ) {
 		return {
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.json.putJson(
 					baseURL + "mock.php?action=echoMethod",
 					{ method: "put", data: "test" }
@@ -148,7 +148,7 @@ QUnit.module( "beeico-ajax", {
 
 	ajaxTest( "jQuery.beeico.url.deleteJson() - DELETE request", 2, function( assert ) {
 		return {
-			create: function( options ) {
+			create: function() {
 				return jQuery.beeico.url.deleteJson( baseURL + "mock.php?action=echoMethod", { id: 123 } );
 			},
 			success: function( data ) {

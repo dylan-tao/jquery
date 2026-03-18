@@ -11,6 +11,8 @@ export default [
 		ignores: [
 			"external",
 			"tmp",
+			"dist/**",
+			"dist-module/**",
 			"test/data/json_obj.js",
 			"test/data/jquery-*.js"
 		]

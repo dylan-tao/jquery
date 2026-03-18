@@ -21,10 +21,12 @@ function processFormData( data ) {
 	if ( typeof data === "string" ) {
 		return data;
 	}
+
 	// Check if it's FormData (multipart/form-data)
-	if ( data instanceof FormData ) {
+	if ( data instanceof window.FormData ) {
 		return data;
 	}
+
 	// Default to application/x-www-form-urlencoded
 	return jQuery.param( data );
 }
@@ -40,8 +42,9 @@ function getAjaxOptions( url, data, options ) {
 
 // Helper to apply FormData settings if needed
 function applyFormDataOptions( opts, data ) {
+
 	// Auto-detect FormData for multipart/form-data
-	if ( data instanceof FormData ) {
+	if ( data instanceof window.FormData ) {
 		opts.processData = false;
 		opts.contentType = false;
 	}
@@ -82,9 +85,13 @@ jQuery.beeico.url.deleteText = function( url, data, options ) {
 };
 
 // Form body methods (POST/PUT) - auto-detect multipart/form-data
+
 // beeico.form.postJson - send form data via POST, expect JSON response
 jQuery.beeico.form.postJson = function( url, data, options ) {
-	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
+	var opts = applyFormDataOptions(
+		getAjaxOptions( url, processFormData( data ), options ),
+		data
+	);
 	opts.type = "POST";
 	opts.dataType = "json";
 	return jQuery.ajax( opts );
@@ -92,7 +99,10 @@ jQuery.beeico.form.postJson = function( url, data, options ) {
 
 // beeico.form.postText - send form data via POST, expect text/html response
 jQuery.beeico.form.postText = function( url, data, options ) {
-	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
+	var opts = applyFormDataOptions(
+		getAjaxOptions( url, processFormData( data ), options ),
+		data
+	);
 	opts.type = "POST";
 	opts.dataType = "text";
 	return jQuery.ajax( opts );
@@ -100,7 +110,10 @@ jQuery.beeico.form.postText = function( url, data, options ) {
 
 // beeico.form.putJson - send form data via PUT, expect JSON response
 jQuery.beeico.form.putJson = function( url, data, options ) {
-	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
+	var opts = applyFormDataOptions(
+		getAjaxOptions( url, processFormData( data ), options ),
+		data
+	);
 	opts.type = "PUT";
 	opts.dataType = "json";
 	return jQuery.ajax( opts );
@@ -108,7 +121,10 @@ jQuery.beeico.form.putJson = function( url, data, options ) {
 
 // beeico.form.putText - send form data via PUT, expect text/html response
 jQuery.beeico.form.putText = function( url, data, options ) {
-	var opts = applyFormDataOptions( getAjaxOptions( url, processFormData( data ), options ), data );
+	var opts = applyFormDataOptions(
+		getAjaxOptions( url, processFormData( data ), options ),
+		data
+	);
 	opts.type = "PUT";
 	opts.dataType = "text";
 	return jQuery.ajax( opts );

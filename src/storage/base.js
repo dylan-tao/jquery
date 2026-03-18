@@ -1,5 +1,9 @@
 import { jQuery } from "../core.js";
 
+// Initialize beeico.storage namespace
+jQuery.beeico = jQuery.beeico || {};
+jQuery.beeico.storage = jQuery.beeico.storage || {};
+
 const STORAGE_PREFIX = "beeico_storage_";
 
 /**
@@ -38,10 +42,10 @@ function createStorageAPI( storage, type ) {
 			if ( this.supported() ) {
 				return true;
 			}
-			alert( "请开启浏览器 " + type + " 权限\n\n设置路径：\n" +
-				"Chrome: 设置 > 隐私和安全 > 网站设置 > 存储\n" +
-				"Firefox: 选项 > 隐私与安全\n" +
-				"Edge: 设置 > Cookies 和网站权限 > 存储" );
+			window.alert( "Please enable " + type + " in your browser settings.\n\n" +
+				"Chrome: Settings > Privacy and security > Site Settings > Storage\n" +
+				"Firefox: Options > Privacy & Security\n" +
+				"Edge: Settings > Cookies and site permissions > Storage" );
 			return false;
 		},
 
@@ -57,7 +61,6 @@ function createStorageAPI( storage, type ) {
 				storage.setItem( getKey( key ), data );
 				return true;
 			} catch ( e ) {
-				console.error( "Storage set failed:", e );
 				return false;
 			}
 		},
@@ -70,7 +73,6 @@ function createStorageAPI( storage, type ) {
 				var data = storage.getItem( getKey( key ) );
 				return data ? JSON.parse( data ).value : null;
 			} catch ( e ) {
-				console.error( "Storage get failed:", e );
 				return null;
 			}
 		},
@@ -83,7 +85,6 @@ function createStorageAPI( storage, type ) {
 				storage.removeItem( getKey( key ) );
 				return true;
 			} catch ( e ) {
-				console.error( "Storage remove failed:", e );
 				return false;
 			}
 		},
@@ -93,17 +94,17 @@ function createStorageAPI( storage, type ) {
 				return false;
 			}
 			try {
-				var prefix = STORAGE_PREFIX;
-				var i = storage.length;
+				var prefix = STORAGE_PREFIX,
+					i = storage.length,
+					itemKey;
 				while ( i-- ) {
-					var key = storage.key( i );
-					if ( key && key.indexOf( prefix ) === 0 ) {
-						storage.removeItem( key );
+					itemKey = storage.key( i );
+					if ( itemKey && itemKey.indexOf( prefix ) === 0 ) {
+						storage.removeItem( itemKey );
 					}
 				}
 				return true;
 			} catch ( e ) {
-				console.error( "Storage clear failed:", e );
 				return false;
 			}
 		},
@@ -113,18 +114,18 @@ function createStorageAPI( storage, type ) {
 				return [];
 			}
 			try {
-				var keys = [];
-				var prefix = STORAGE_PREFIX;
-				var i = storage.length;
+				var keys = [],
+					prefix = STORAGE_PREFIX,
+					i = storage.length,
+					itemKey;
 				while ( i-- ) {
-					var key = storage.key( i );
-					if ( key && key.indexOf( prefix ) === 0 ) {
-						keys.push( key.substring( prefix.length ) );
+					itemKey = storage.key( i );
+					if ( itemKey && itemKey.indexOf( prefix ) === 0 ) {
+						keys.push( itemKey.substring( prefix.length ) );
 					}
 				}
 				return keys.reverse();
 			} catch ( e ) {
-				console.error( "Storage keys failed:", e );
 				return [];
 			}
 		}
